@@ -1,5 +1,8 @@
 package com.product.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,9 +22,8 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="category_id",nullable = false)
+    @JsonBackReference
     private Category category;
-    
-
 
     public Long getId() {
         return id;
@@ -76,6 +78,21 @@ public class Product {
      */
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+
+    /**
+     * @return Category return the category
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }
