@@ -1,6 +1,7 @@
 package com.product.app.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,7 +23,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name="category_id",nullable = false)
-    @JsonBackReference
+    @JsonIgnoreProperties({"product"}) 
     private Category category;
 
     public Long getId() {
@@ -52,45 +53,30 @@ public class Product {
         this.description = description;
     }
 
-    /**
-     * @return String return the imageUrl
-     */
+
     public String getImageUrl() {
         return imageUrl;
     }
 
-    /**
-     * @param imageUrl the imageUrl to set
-     */
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    /**
-     * @return Double return the price
-     */
+
     public Double getPrice() {
         return price;
     }
 
-    /**
-     * @param price the price to set
-     */
+   
     public void setPrice(Double price) {
         this.price = price;
     }
 
-
-    /**
-     * @return Category return the category
-     */
     public Category getCategory() {
         return category;
     }
 
-    /**
-     * @param category the category to set
-     */
     public void setCategory(Category category) {
         this.category = category;
     }
